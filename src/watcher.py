@@ -57,8 +57,11 @@ class Watcher:
 
     def post_left_units_tweet(self, time: int, unit: str, units: str):
         tweet = self.create_text(time, units if time > 1 else unit)
-        self.api_helper.post_tweet(tweet)
-        log(f"-> Tweet Sent: \"{tweet}\"")
+        if not self.is_this_tweet_sent(tweet):
+            self.api_helper.post_tweet(tweet)
+            log(f"-> Tweet Sent: \"{tweet}\"")
+        else:
+            log(f"-> Tweet Already Exists: \"{tweet}\"")
 
     def post_watch_ended_tweet(self):
         self.api_helper.post_tweet(WATCH_END_TEXT)
