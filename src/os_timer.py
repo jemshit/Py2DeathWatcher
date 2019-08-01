@@ -50,7 +50,11 @@ class OsTimer:
         job.hour.on(hour)
         job.minute.on(0)
         job.enable()
-        log(f"Scheduled Job: {job.description(use_24hour_time_format=True)}")
+        try:
+            log(f"Scheduled Job: {job.description(use_24hour_time_format=True)}")
+        except ValueError:
+            # https://github.com/pypa/pipenv/issues/187
+            log(f"Scheduled Daily Job")
         self.cron.write_to_user()
 
     def cancel_repeating_day(self):
@@ -68,7 +72,11 @@ class OsTimer:
         job.hour.every(1)
         job.minute.on(1)
         job.enable()
-        log(f"Scheduled Job: {job.description(use_24hour_time_format=True)}")
+        try:
+            log(f"Scheduled Job: {job.description(use_24hour_time_format=True)}")
+        except ValueError:
+            # https://github.com/pypa/pipenv/issues/187
+            log(f"Scheduled Hourly Job")
         self.cron.write_to_user()
 
     def cancel_repeating_hour(self):
@@ -84,7 +92,11 @@ class OsTimer:
         job: CronItem = self.cron.new(command=COMMAND, comment=MINUTE_SCHEDULE_ID)
         job.minute.every(1)
         job.enable()
-        log(f"Scheduled Job: {job.description(use_24hour_time_format=True)}")
+        try:
+            log(f"Scheduled Job: {job.description(use_24hour_time_format=True)}")
+        except ValueError:
+            # https://github.com/pypa/pipenv/issues/187
+            log(f"Scheduled Minute Job")
         self.cron.write_to_user()
 
     def cancel_repeating_minute(self):
