@@ -26,7 +26,7 @@ LOG_FILE = os.path.join(PROJECT_DIR, "files/cron_log.txt")
 SCRIPT_PATH = os.path.abspath(os.path.join(PROJECT_DIR, "src/app.py"))
 ACTIVATE_VENV = f". {PROJECT_DIR}/venv/bin/activate"
 DEACTIVATE_VENV = f"deactivate"
-COMMAND = f"{ACTIVATE_VENV}; ./{SCRIPT_PATH} >> {LOG_FILE} 2>&1; {DEACTIVATE_VENV}"
+COMMAND = f"{ACTIVATE_VENV}; {SCRIPT_PATH} >> {LOG_FILE} 2>&1; {DEACTIVATE_VENV}"
 
 
 class OsTimer:
