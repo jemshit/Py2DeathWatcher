@@ -1,20 +1,14 @@
+#!/usr/bin/env python3
 """
 chmod +x src/app.py for creating files
 """
 
-import os
-import sys
 from os.path import exists
 
-SRC_DIR = os.path.dirname(__file__)
-PROJECT_DIR = os.path.abspath(os.path.join(SRC_DIR, os.pardir))
-if PROJECT_DIR not in sys.path:
-    sys.path.append(PROJECT_DIR)
-
-from src.watcher import Watcher
-from src.log import log
-from src.os_timer import TAB_FILE, LOG_FILE, OsTimer, USER_CRONTAB_ENABLED
-from src.twitter_api import ACCESS_TOKEN_FILENAME, create_api_helper, TwitterApiHelper
+from log import log
+from os_timer import TAB_FILE, LOG_FILE, USER_CRONTAB_ENABLED, OsTimer
+from twitter_api import ACCESS_TOKEN_FILENAME, create_api_helper, TwitterApiHelper
+from watcher import Watcher
 
 
 def initialize_files():

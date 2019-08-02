@@ -1,18 +1,13 @@
 import os
-import sys
 from os.path import exists
 from typing import List
-import toml
 
+import toml
 import tweepy
 from tweepy import OAuthHandler, API, User, Status
 
-SRC_DIR = os.path.dirname(__file__)
-PROJECT_DIR = os.path.abspath(os.path.join(SRC_DIR, os.pardir))
-if PROJECT_DIR not in sys.path:
-    sys.path.append(PROJECT_DIR)
-
-from src.log import log
+from config import PROJECT_DIR
+from log import log
 
 API_SECRETS_FILE = os.path.join(PROJECT_DIR, "files/twitter_api_secrets.toml")
 API_SECRETS = toml.load(f=API_SECRETS_FILE)

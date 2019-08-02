@@ -1,19 +1,12 @@
 import json
-import os
-import sys
 import time
 from typing import List
 
 from tweepy import Status
 
-SRC_DIR = os.path.dirname(__file__)
-PROJECT_DIR = os.path.abspath(os.path.join(SRC_DIR, os.pardir))
-if PROJECT_DIR not in sys.path:
-    sys.path.append(PROJECT_DIR)
-
-from src.log import log
-from src.os_timer import OsTimer, log_next_schedule
-from src.twitter_api import TwitterApiHelper
+from log import log
+from os_timer import OsTimer, log_next_schedule
+from twitter_api import TwitterApiHelper
 
 WATCH_END_EPOCH_SEC = 1577836800  # 2020, 01/01, 00:00:00 GMT
 HOURS_IN_A_DAY = 24
